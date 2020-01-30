@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+
+<table class="table">
+    <caption>List with all posts</caption>
+    <thead>
+        <th scope="col">ID/Nr</th>
+        <th scope="col">Title</th>
+        <th scope="col">Body</th>
+        <th scope="col">Created at</th>
+        <th scope="col">Updated at</th>
+        <th scope="col">Options</th>
+    </thead>
+    <tbody>
+        @{ int i = 0;}
+        @foreach(var item in ViewBag.Posts)
+        {
+            { i++;}
+            <tr>
+                <th scope="row">@i</th>
+                <td>@item.title</td>
+                @if (item.body.Length >= 10)
+                {
+                <td>@item.body.Substring(0, 10)  ...</td>
+                } else
+                {
+                    <td>@item.body</td>
+                }
+                <td>@item.created_at</td>
+                <td>@item.updated_at</td>
+                <td>
+                    <a asp-controller="Post" asp-action="Edit" asp-route-id="@item.post_id">Edit</a>
+                    <a asp-controller="Post" asp-action="Delete" asp-route-id="@item.post_id">Delete</a>
+                    <a asp-controller="Post" asp-action="Details" asp-route-id="@item.post_id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="nav-link" asp-controller="Post" asp-action="Create">Create Post</a>
+

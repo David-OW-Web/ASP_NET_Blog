@@ -1,0 +1,24 @@
+﻿@model Accounts
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<form asp-action="Login" method="post">
+    <label asp-for="username"></label>
+    <input asp-for="username"/>
+
+    <label asp-for="password"></label>
+    <input asp-for="password"/>
+
+    <input type="submit" value="Login"/>
+</form>
+
+
+@foreach(var item in ViewBag.Data)
+{
+    <p>@item.username</p>
+    <p>@item.email</p>
+}
+

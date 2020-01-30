@@ -1,0 +1,36 @@
+﻿@model Comments
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@foreach (var item in ViewBag.Post)
+{
+    <strong>@item.title</strong>
+    <p>@item.body</p>
+}
+
+<form asp-action="Comment">
+    <label asp-for="title"></label>
+    <input asp-for="title"/>
+
+    <label asp-for="body"></label>
+    <input asp-for="body"/>
+
+    <input type="hidden" asp-for="fk_post_id" value="@ViewBag.Id"/>
+
+    <input type="submit" value="Comment on this post"/>
+</form>
+
+@if(ViewBag.Comments.Count != 0)
+{
+    <h3>Comments</h3>
+    @foreach(var item in ViewBag.Comments)
+    {
+        <span class="text-dark">@item.comment_date</span>
+        <strong>@item.title</strong>
+        <p>@item.body</p>
+    }
+}
+

@@ -1,0 +1,40 @@
+﻿@model Accounts
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <caption>List of all Users</caption>
+    <thead>
+        <th scope="col">ID/Nr</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Member since</th>
+    </thead>
+    <tbody>
+        @{ int i = 0;}
+        @foreach(var item in ViewBag.Accounts)
+        {
+            { i++; }
+        <tr>
+            <th scope="row">@i</th>
+            <td>@item.username</td>
+            <td>@item.email</td>
+            <td>@item.created_at</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@if(ViewBag.Session != null)
+{
+    <p>Logged in as: @ViewBag.Session</p>
+    <li class="nav-item">@ViewBag.Session</li>
+    <a class="nav-link" asp-action="Logout">Logout</a>
+} else
+{
+    <a asp-action="Login">Login</a>
+}
+

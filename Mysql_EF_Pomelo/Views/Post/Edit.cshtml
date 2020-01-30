@@ -1,0 +1,20 @@
+﻿@model Posts
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+@foreach (var item in ViewBag.Post)
+{
+<form asp-action="Edit">
+    <label asp-for="title"></label>
+    <input asp-for="title" value="@item.title"/>
+
+    <label asp-for="body"></label>
+    <input asp-for="body" value="@item.body"/>
+
+    <input type="submit" value="Edit post" />
+</form>
+}
+

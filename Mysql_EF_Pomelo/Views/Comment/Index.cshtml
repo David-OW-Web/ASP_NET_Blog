@@ -1,0 +1,45 @@
+﻿@model PagedList.IPagedList<Comments>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <caption>List of all Comments</caption>
+    <thead>
+    <th scope="col">ID/Nr</th>
+    <th scope="col">Title</th>
+    <th scope="col">Body</th>
+    <th scope="col">Comment date</th>
+    <th scope="col">Options</th>
+    </thead>
+    <tbody>
+        @{ int i = 0;}
+        @foreach (var item in ViewBag.Comments)
+        {
+            { i++; }
+            <tr>
+                <th scope="row">@i</th>
+                <td>@item.title</td>
+                <td>@item.body</td>
+                <td>@item.comment_date</td>
+                <td><a asp-action="Delete" asp-route-id="@item.comment_id">Delete</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+Page @(ViewBag.Comments.PageCount < ViewBag.Comments.PageNumber ? 0 : ViewBag.Comments.PageNumber) of @ViewBag.Comments.PageCount
+
+<br />
+
+@for(int j = 1; j < ViewBag.Comments.PageCount + 1; j++) {
+    <a asp-action="Index"><!-- Change Action Link --></a>
+    @Html.ActionLink(j.ToString(), "Index", "Comment", new { page = j })
+}
+
+

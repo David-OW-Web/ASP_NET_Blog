@@ -23,7 +23,7 @@ namespace Mysql_EF_Pomelo.Controllers
 
         public IActionResult Index()
         {
-            var posts = _db.Post.OrderBy(x => x.created_at).ToList();
+            var posts = _db.Post.OrderByDescending(x => x.created_at).Take(5).ToList();
             ViewBag.Posts = posts;
             return View();
         }

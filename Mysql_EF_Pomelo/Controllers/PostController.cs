@@ -80,5 +80,19 @@ namespace Mysql_EF_Pomelo.Controllers
             ViewBag.Post = postData;
             return View();
         }
+
+        public IActionResult Search(string SearchString)
+        {
+            if (SearchString != null)
+            {
+                var Result = _db.Post.Where(x => x.title.Contains(SearchString)).ToList();
+                ViewBag.Result = Result;
+            } else
+            {
+                var Result = _db.Post.OrderByDescending(x => x.created_at).Take(5).ToList();
+                ViewBag.Result = Result;
+            }
+            return View();
+        }
     }
 }

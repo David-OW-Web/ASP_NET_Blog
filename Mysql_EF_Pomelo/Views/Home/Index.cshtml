@@ -9,8 +9,11 @@
 
 @foreach (var item in ViewBag.Posts)
 {
-    <p>@item.title</p>
-    <p>@item.created_at</p>
-    <a asp-action="Delete" asp-route-id="@item.post_id">Delete</a>
-    <a asp-action="Details" asp-route-id="@item.post_id">Details</a>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">@item.title</h3>
+            <p class="card-text">@item.body</p>
+            <span>@item.created_at</span>
+        </div>
+    </div>
 }
